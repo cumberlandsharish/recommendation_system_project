@@ -1,0 +1,6 @@
+# Python dependencies for the recommendation system
+pandas
+numpy
+scikit-learn
+scipy
+Flask
