@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proactive Movie Recommender</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f9; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1 { color: #333; text-align: center; }
+        label { display: block; margin-top: 15px; font-weight: bold; }
+        input[type="number"] { width: 95%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; }
+        button { background-color: #007bff; color: white; padding: 12px 20px; border: none; border-radius: 4px; cursor: pointer; width: 100%; margin-top: 20px; font-size: 16px; }
+        button:hover { background-color: #0056b3; }
+        .results { margin-top: 30px; padding: 15px; border: 1px solid #ddd; border-radius: 4px; background-color: #e9ecef; }
+        .results h2 { margin-top: 0; color: #007bff; }
+        .results ol { list-style-type: decimal; padding-left: 20px; }
+        .results li { margin-bottom: 8px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Proactive Movie Recommender 🤖</h1>
+        <p>Enter a User ID (1-943) to get your personalized, context-aware movie recommendations.</p>
+
+        <form method="POST" action="/">
+            <label for="user_id">Enter User ID (1-943):</label>
+            <input type="number" id="user_id" name="user_id" min="1" max="943" required>
+
+            <button type="submit">Get Proactive Recommendations</button>
+        </form>
+
+        {% if recommendations %}
+        <div class="results">
+            <h2>Recommendations for User ID {{ user_id }}:</h2>
+            <ol>
+                {% for rec in recommendations %}
+                    <li>{{ rec }}</li>
+                {% endfor %}
+            </ol>
+        </div>
+        {% endif %}
+
+        {% if error %}
+        <div class="results" style="background-color: #f8d7da; color: #721c24; border-color: #f5c6cb;">
+            <h2>Error:</h2>
+            <p>{{ error }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
